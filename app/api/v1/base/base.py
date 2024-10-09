@@ -22,7 +22,6 @@ async def login_access_token(credentials: CredentialsSchema):
     await user_controller.update_last_login(user.id)
     access_token_expires = timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
     expire = datetime.now(timezone.utc) + access_token_expires
-
     data = JWTOut(
         access_token=create_access_token(
             data=JWTPayload(

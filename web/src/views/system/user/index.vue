@@ -95,13 +95,13 @@ const columns = [
       return h('span', group)
     },
   },
-  {
-    title: '部门',
-    key: 'dept.name',
-    align: 'center',
-    width: 40,
-    ellipsis: { tooltip: true },
-  },
+  // {
+  //   title: '部门',
+  //   key: 'dept.name',
+  //   align: 'center',
+  //   width: 40,
+  //   ellipsis: { tooltip: true },
+  // },
   {
     title: '超级用户',
     key: 'is_superuser',
@@ -353,25 +353,25 @@ const validateAddUser = {
 
 <template>
   <NLayout has-sider wh-full>
-    <NLayoutSider
-      bordered
-      content-style="padding: 24px;"
-      :collapsed-width="0"
-      :width="240"
-      show-trigger="arrow-circle"
-    >
-      <h1>部门列表</h1>
-      <br />
-      <NTree
-        block-line
-        :data="deptOption"
-        key-field="id"
-        label-field="name"
-        default-expand-all
-        :node-props="nodeProps"
-      >
-      </NTree>
-    </NLayoutSider>
+<!--    <NLayoutSider-->
+<!--      bordered-->
+<!--      content-style="padding: 24px;"-->
+<!--      :collapsed-width="0"-->
+<!--      :width="240"-->
+<!--      show-trigger="arrow-circle"-->
+<!--    >-->
+<!--      <h1>部门列表</h1>-->
+<!--      <br />-->
+<!--      <NTree-->
+<!--        block-line-->
+<!--        :data="deptOption"-->
+<!--        key-field="id"-->
+<!--        label-field="name"-->
+<!--        default-expand-all-->
+<!--        :node-props="nodeProps"-->
+<!--      >-->
+<!--      </NTree>-->
+<!--    </NLayoutSider>-->
     <NLayoutContent>
       <CommonPage show-footer title="用户列表">
         <template #action>
