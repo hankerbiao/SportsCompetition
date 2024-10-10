@@ -4,9 +4,9 @@
     <BreadCrumb ml-15 hidden sm:block />
   </div>
   <div ml-auto flex items-center>
-    <Languages />
+<!--    <Languages />-->
     <ThemeMode />
-    <GithubSite />
+<!--    <GithubSite />-->
     <FullScreen />
     <UserAvatar />
   </div>
