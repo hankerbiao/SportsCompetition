@@ -39,4 +39,11 @@ export default {
   deleteDept: (params = {}) => request.delete('/dept/delete', { params }),
   // auditlog
   getAuditLogList: (params = {}) => request.get('/auditlog/list', { params }),
+
+  // team
+  getTeamList: (params = {}) => request.get('/team/list', { params }),
+  createTeam: (data = {}) => request.post('/team/create', data),
+  updateTeam: (data = {}) => request.post('/team/update', data),
+  deleteTeam: (params = {}) => request.delete('/team/delete', { params }),
+  // team member
 }
