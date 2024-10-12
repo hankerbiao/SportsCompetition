@@ -23,8 +23,7 @@ async def list_team(
     """
     query = select(Team)
     if team_name:
-        query = query.where(Team.name.contains(team_name))
-
+        query = query.where(Team.name == team_name)
     offset = (page - 1) * page_size
     data = db.exec(query.offset(offset).limit(page_size)).all()
 

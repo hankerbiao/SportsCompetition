@@ -84,21 +84,21 @@ const columns = [
   {
     title: '操作',
     key: 'actions',
-    width: 200,
+    width: 100,
     align: 'center',
     fixed: 'right',
     render(row) {
       return [
-        h(
-            NButton,
-            {
-              size: 'small',
-              type: 'primary',
-              style: 'margin-right: 8px;',
-              onClick: () => handleEdit(row),
-            },
-            {default: () => '编辑', icon: renderIcon('material-symbols:edit-outline', {size: 16})}
-        ),
+        // h(
+        //     NButton,
+        //     {
+        //       size: 'small',
+        //       type: 'primary',
+        //       style: 'margin-right: 8px;',
+        //       onClick: () => handleEdit(row),
+        //     },
+        //     {default: () => '编辑', icon: renderIcon('material-symbols:edit-outline', {size: 16})}
+        // ),
         h(
             NPopconfirm,
             {
