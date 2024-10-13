@@ -1,5 +1,6 @@
-from typing import List, Optional
-from sqlmodel import Field, SQLModel
+from typing import Optional, List
+from datetime import datetime
+from sqlmodel import Field, SQLModel, Relationship
 
 
 class Team(SQLModel, table=True):
@@ -22,3 +23,42 @@ class Team(SQLModel, table=True):
 
     def __str__(self):
         return self.name
+
+
+class User(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    username: str = Field(..., max_length=20, unique=True, index=True)
+    alias: Optional[str] = Field(default=None, max_length=30)
+    email: str = Field(..., max_length=255, unique=True, index=True)
+    phone: Optional[str] = Field(default=None, max_length=20)
+    password: Optional[str] = Field(default=None, max_length=128)
+    is_active: bool = Field(default=True, nullable=False)
+    is_superuser: bool = Field(default=False, nullable=False)
+    last_login: Optional[datetime] = Field(default=None)
+    dept_id: Optional[int] = Field(default=None)
+
+    athletes: List["Athlete"] = Relationship(back_populates="user")
+
+
+
+class Athlete(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id", index=True)
+    name: str = Field(..., index=True)
+    id_card: str = Field(..., unique=True)
+    gender: str
+    kumite_group: Optional[str] = Field(default=None)
+    kata_group: Optional[str] = Field(default=None)
+    individual_kumite: Optional[str] = Field(default=None)
+    individual_kata: Optional[str] = Field(default=None)
+    pair_kata: Optional[str] = Field(default=None)
+    team_kata: Optional[str] = Field(default=None)
+    mixed_pair_kata: Optional[str] = Field(default=None)
+    team_kumite: Optional[str] = Field(default=None)
+    multi_team_free_kata: Optional[str] = Field(default=None)
+    mixed_team_kata: Optional[str] = Field(default=None)
+    # fee: Optional[str] = Field(default=None)
+
+    user: Optional[User] = Relationship(back_populates="athletes")

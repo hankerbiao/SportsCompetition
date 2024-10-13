@@ -5,11 +5,13 @@ from app.core.dependency import DependPermisson
 from .apis import apis_router
 from .auditlog import auditlog_router
 from .base import base_router
-from .competition import team_router
 from .depts import depts_router
 from .menus import menus_router
 from .roles import roles_router
 from .users import users_router
+from .competition import team_router
+from .athlete import athlete_router
+
 
 v1_router = APIRouter()
 
@@ -22,3 +24,4 @@ v1_router.include_router(depts_router, prefix="/dept", dependencies=[DependPermi
 v1_router.include_router(auditlog_router, prefix="/auditlog", dependencies=[DependPermisson])
 v1_router.include_router(auditlog_router, prefix="/auditlog", dependencies=[DependPermisson])
 v1_router.include_router(team_router, prefix="/team", dependencies=[DependPermisson])
+v1_router.include_router(athlete_router, prefix="/athlete", dependencies=[DependPermisson])

@@ -45,5 +45,10 @@ export default {
   createTeam: (data = {}) => request.post('/team/create', data),
   updateTeam: (data = {}) => request.post('/team/update', data),
   deleteTeam: (params = {}) => request.delete('/team/delete', { params }),
-  // team member
+
+  // athlete
+  getAthleteList: (params = {}) => request.get('/athlete/list', { params }),
+  createAthlete: (data = {}) => request.post('/athlete/create', data),
+  updateAthlete: (data = {}) => request.post('/athlete/update', data),
+  deleteAthlete: (params = {}) => request.delete('/athlete/delete', { params }),
 }

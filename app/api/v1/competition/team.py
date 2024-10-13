@@ -5,7 +5,7 @@ from sqlmodel import select
 from app.core.db import SessionDep
 from app.models.competition import Team
 from app.schemas.base import SuccessExtra
-from app.utils.jwt import get_current_user_id
+from app.core.ctx import CTX_USER_ID
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -21,6 +21,7 @@ async def list_team(
     """
     查看指定运动队列表
     """
+    user_id = CTX_USER_ID.get()
     query = select(Team)
     if team_name:
         query = query.where(Team.name == team_name)
@@ -38,8 +39,6 @@ async def list_all_teams(db: SessionDep):
     """
     查看所有运动队列表
     """
-    user_id = get_current_user_id()
-    print(user_id)
     data = db.exec(select(Team)).all()
     serialized_data = [team.dict() for team in data]
     return SuccessExtra(data=serialized_data)

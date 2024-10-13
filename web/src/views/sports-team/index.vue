@@ -21,6 +21,7 @@ import {formatDate, renderIcon} from '@/utils'
 import {useCRUD} from '@/composables'
 import api from '@/api'
 import TheIcon from '@/components/icon/TheIcon.vue'
+import { useUserStore } from '@/store'
 
 defineOptions({name: '运动队管理'})
 
@@ -28,6 +29,12 @@ const message = useMessage()
 const $table = ref(null)
 const queryItems = ref({})
 const dataLoaded = ref(false)
+
+
+const userStore = useUserStore()
+
+console.log(userStore.userId)
+console.log(userStore.userInfo)
 
 const defaultForm = {
   name: '',
