@@ -51,4 +51,12 @@ export default {
   createAthlete: (data = {}) => request.post('/athlete/create', data),
   updateAthlete: (data = {}) => request.post('/athlete/update', data),
   deleteAthlete: (params = {}) => request.delete('/athlete/delete', { params }),
+
+  // event 赛事
+  createEvent: (data = {}) => request.post('/events/create', data),
+  updateEvent: (data = {}) => request.post('/events/update', data),
+  deleteEvent: (params = {}) => request.delete('/events/delete', { params }),
+  getEventList: (params = {}) => request.get('/events/list', { params }),
+
+
 }

@@ -42,7 +42,7 @@ const defaultForm = {
   address: '',
   leader_name: '',
   leader_phone: '',
-  leader_photo: [],
+  leader_photo: '',
   doctor_name: '',
   doctor_phone: '',
   staff_name: '',
@@ -167,7 +167,6 @@ const columns = [
         :title="modalTitle"
         :loading="modalLoading"
         @save="handleSave"
-        :width="1"
     >
       <NForm
           v-if="modalForm"
@@ -195,73 +194,87 @@ const columns = [
           <NInput v-model:value="modalForm.address" placeholder="请输入地址"/>
         </NFormItem>
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="8">
-            <NFormItem label="领队名称" path="leader_name">
-              <NInput v-model:value="modalForm.leader_name" placeholder="请输入领队名称"/>
+          <NGi :span="10">
+            <NFormItem label="领队姓名" path="leader_name">
+              <NInput v-model:value="modalForm.leader_name"/>
             </NFormItem>
           </NGi>
-          <NGi :span="8">
+          <NGi :span="12">
             <NFormItem label="领队电话" path="leader_phone">
               <NInput v-model:value="modalForm.leader_phone" placeholder="请输入领队电话"/>
             </NFormItem>
           </NGi>
-          <NGi :span="8">
-            <NFormItem label="领队照片" path="leader_photo">
-              <NUpload
-                  v-model:file-list="modalForm.leader_photo"
-                  list-type="image-card"
-                  :max="1"
-              />
-            </NFormItem>
-          </NGi>
+
         </NGrid>
+<!--        <NGrid :cols="24" :x-gap="24">-->
+<!--        <NGi :span="12">-->
+<!--          <NFormItem label="领队照片" path="leader_photo">-->
+<!--            <NUpload-->
+<!--                v-model:file-list="modalForm.leader_photo"-->
+<!--                list-type="image-card"-->
+<!--                :max="1"-->
+<!--            />-->
+<!--          </NFormItem>-->
+<!--        </NGi>-->
+
+<!--          <NGi :span="8">-->
+<!--            <NFormItem label="教练员照片" path="leader_photo">-->
+<!--              <NUpload-->
+<!--                  v-model:file-list="modalForm.leader_photo"-->
+<!--                  list-type="image-card"-->
+<!--                  :max="1"-->
+<!--              />-->
+<!--            </NFormItem>-->
+<!--          </NGi>-->
+<!--        </NGrid>-->
+
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="12">
+          <NGi :span="10">
             <NFormItem label="队医姓名" path="doctor_name">
-              <NInput v-model:value="modalForm.doctor_name" placeholder="请输入队医姓名"/>
+              <NInput v-model:value="modalForm.doctor_name"/>
             </NFormItem>
           </NGi>
           <NGi :span="12">
             <NFormItem label="队医电话" path="doctor_phone">
-              <NInput v-model:value="modalForm.doctor_phone" placeholder="请输入队医电话"/>
+              <NInput v-model:value="modalForm.doctor_phone"/>
             </NFormItem>
           </NGi>
         </NGrid>
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="12">
+          <NGi :span="10">
             <NFormItem label="工作人员姓名" path="staff_name">
-              <NInput v-model:value="modalForm.staff_name" placeholder="请输入工作人员姓名"/>
+              <NInput v-model:value="modalForm.staff_name"/>
             </NFormItem>
           </NGi>
           <NGi :span="12">
             <NFormItem label="工作人员电话" path="staff_phone">
-              <NInput v-model:value="modalForm.staff_phone" placeholder="请输入工作人员电话"/>
+              <NInput v-model:value="modalForm.staff_phone"/>
             </NFormItem>
           </NGi>
         </NGrid>
 
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="12">
+          <NGi :span="10">
             <NFormItem label="教练员1" path="coaches1">
-              <NInput v-model:value="modalForm.coaches1" placeholder="请输入工作人员姓名"/>
+              <NInput v-model:value="modalForm.coaches1"/>
             </NFormItem>
           </NGi>
           <NGi :span="12">
             <NFormItem label="教练员1电话" path="coaches1_phone">
-              <NInput v-model:value="modalForm.coaches1_phone" placeholder="请输入工作人员电话"/>
+              <NInput v-model:value="modalForm.coaches1_phone" />
             </NFormItem>
           </NGi>
         </NGrid>
 
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="12">
+          <NGi :span="10">
             <NFormItem label="教练员2" path="coaches2">
-              <NInput v-model:value="modalForm.coaches2" placeholder="请输入工作人员姓名"/>
+              <NInput v-model:value="modalForm.coaches2"/>
             </NFormItem>
           </NGi>
           <NGi :span="12">
             <NFormItem label="教练员2电话" path="coaches2_phone">
-              <NInput v-model:value="modalForm.coaches2_phone" placeholder="请输入工作人员电话"/>
+              <NInput v-model:value="modalForm.coaches2_phone"/>
             </NFormItem>
           </NGi>
         </NGrid>

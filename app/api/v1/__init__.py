@@ -11,6 +11,7 @@ from .roles import roles_router
 from .users import users_router
 from .competition import team_router
 from .athlete import athlete_router
+from .event import event_router
 
 
 v1_router = APIRouter()
@@ -25,3 +26,4 @@ v1_router.include_router(auditlog_router, prefix="/auditlog", dependencies=[Depe
 v1_router.include_router(auditlog_router, prefix="/auditlog", dependencies=[DependPermisson])
 v1_router.include_router(team_router, prefix="/team", dependencies=[DependPermisson])
 v1_router.include_router(athlete_router, prefix="/athlete", dependencies=[DependPermisson])
+v1_router.include_router(event_router, prefix="/events", dependencies=[DependPermisson])

@@ -45,6 +45,7 @@ const defaultForm = {
   team_kumite: '',
   multi_team_free_kata: '',
   mixed_team_kata: '',
+  // photo: '',
   // fee: ''
 };
 const {
@@ -82,8 +83,8 @@ const columns = [
   {title: '身份证', key: 'id_card', width: 180, align: 'center'},
   {title: '性别', key: 'gender', width: 60, align: 'center'},
   // { title: '出生年月日', key: 'birth_date', width: 100, align: 'center' },
-  {title: '组手组别', key: 'kumite_group', width: 100, align: 'center'},
-  {title: '型组别', key: 'kata_group', width: 100, align: 'center'},
+  // {title: '组手组别', key: 'kumite_group', width: 100, align: 'center'},
+  // {title: '型组别', key: 'kata_group', width: 100, align: 'center'},
   // { title: '个人组手', key: 'individual_kumite', width: 100, align: 'center' },
   // { title: '个人型', key: 'individual_kata', width: 100, align: 'center' },
   // { title: '双人型', key: 'pair_kata', width: 100, align: 'center' },
@@ -228,18 +229,13 @@ watch(() => modalForm.value.id_card, updateGender);
           :disabled="modalAction === 'view'"
       >
         <NGrid :cols="24" :x-gap="24">
-          <NGi :span="10">
+          <NGi :span="12">
             <NFormItem label="姓名" path="name"
                        :rule="{ required: true, message: '请输入姓名', trigger: ['input', 'blur'] }">
               <NInput v-model:value="modalForm.name" placeholder="请输入姓名"/>
             </NFormItem>
           </NGi>
-          <NGi :span="14">
-            <NFormItem label="身份证" path="id_card" :rule="idCardRules">
-              <NInput v-model:value="modalForm.id_card" placeholder="请输入身份证" @input="updateGender"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
+          <NGi :span="8">
             <NFormItem label="性别" path="gender">
               <NSelect
                   v-model:value="modalForm.gender"
@@ -252,90 +248,101 @@ watch(() => modalForm.value.id_card, updateGender);
               />
             </NFormItem>
           </NGi>
-          <NGi :span="12">
-            <NFormItem label="组手组别" path="kumite_group">
-              <NSelect v-model:value="modalForm.kumite_group" :options="[
-              { label: '甲组', value: '甲组' },
-              { label: '乙组', value: '乙组' },
-              { label: '丙A组', value: '丙A组' },
-              { label: '丙B组', value: '丙B组' }
-            ]" placeholder="请选择组手组别"/>
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="组手组别" path="kumite_group">-->
+          <!--              <NSelect v-model:value="modalForm.kumite_group" :options="[-->
+          <!--              { label: '甲组', value: '甲组' },-->
+          <!--              { label: '乙组', value: '乙组' },-->
+          <!--              { label: '丙A组', value: '丙A组' },-->
+          <!--              { label: '丙B组', value: '丙B组' }-->
+          <!--            ]" placeholder="请选择组手组别"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="型组别" path="kata_group">-->
+          <!--              <NSelect v-model:value="modalForm.kata_group" :options="[-->
+          <!--              { label: '甲组', value: '甲组' },-->
+          <!--              { label: '乙组', value: '乙组' },-->
+          <!--              { label: '丙A组', value: '丙A组' },-->
+          <!--              { label: '丙B组', value: '丙B组' }-->
+          <!--            ]" placeholder="请选择型组别"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="个人组手" path="individual_kumite">-->
+          <!--              <NSelect v-model:value="modalForm.individual_kumite" :options="[-->
+          <!--              { label: '-67kg', value: '-67kg' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择个人组手"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="个人型" path="individual_kata">-->
+          <!--              <NSelect v-model:value="modalForm.individual_kata" :options="[-->
+          <!--              { label: '参赛', value: '参赛' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择个人型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="双人型" path="pair_kata">-->
+          <!--              <NSelect v-model:value="modalForm.pair_kata" :options="[-->
+          <!--              { label: '清远组', value: '清远组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择双人型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="团体型" path="team_kata">-->
+          <!--              <NSelect v-model:value="modalForm.team_kata" :options="[-->
+          <!--              { label: '第3组', value: '第3组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择团体型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="混合双人型" path="mixed_pair_kata">-->
+          <!--              <NSelect v-model:value="modalForm.mixed_pair_kata" :options="[-->
+          <!--              { label: '第1组', value: '第1组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择混合双人型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="团体组手" path="team_kumite">-->
+          <!--              <NSelect v-model:value="modalForm.team_kumite" :options="[-->
+          <!--              { label: '第2组', value: '第2组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择团体组手"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="多人团体自由型" path="multi_team_free_kata">-->
+          <!--              <NSelect v-model:value="modalForm.multi_team_free_kata" :options="[-->
+          <!--              { label: '第1组', value: '第1组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择多人团体自由型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+          <!--          <NGi :span="12">-->
+          <!--            <NFormItem label="混合团体型" path="mixed_team_kata">-->
+          <!--              <NSelect v-model:value="modalForm.mixed_team_kata" :options="[-->
+          <!--              { label: '第1组', value: '第1组' },-->
+          <!--              { label: '不参赛', value: '不参赛' }-->
+          <!--            ]" placeholder="请选择混合团体型"/>-->
+          <!--            </NFormItem>-->
+          <!--          </NGi>-->
+        </NGrid>
+        <NGrid :cols="24" :x-gap="24">
+          <NGi :span="14">
+            <NFormItem label="身份证" path="id_card" :rule="idCardRules">
+              <NInput v-model:value="modalForm.id_card" placeholder="请输入身份证" @input="updateGender"/>
             </NFormItem>
           </NGi>
-          <NGi :span="12">
-            <NFormItem label="型组别" path="kata_group">
-              <NSelect v-model:value="modalForm.kata_group" :options="[
-              { label: '甲组', value: '甲组' },
-              { label: '乙组', value: '乙组' },
-              { label: '丙A组', value: '丙A组' },
-              { label: '丙B组', value: '丙B组' }
-            ]" placeholder="请选择型组别"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="个人组手" path="individual_kumite">
-              <NSelect v-model:value="modalForm.individual_kumite" :options="[
-              { label: '-67kg', value: '-67kg' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择个人组手"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="个人型" path="individual_kata">
-              <NSelect v-model:value="modalForm.individual_kata" :options="[
-              { label: '参赛', value: '参赛' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择个人型"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="双人型" path="pair_kata">
-              <NSelect v-model:value="modalForm.pair_kata" :options="[
-              { label: '清远组', value: '清远组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择双人型"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="团体型" path="team_kata">
-              <NSelect v-model:value="modalForm.team_kata" :options="[
-              { label: '第3组', value: '第3组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择团体型"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="混合双人型" path="mixed_pair_kata">
-              <NSelect v-model:value="modalForm.mixed_pair_kata" :options="[
-              { label: '第1组', value: '第1组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择混合双人型"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="团体组手" path="team_kumite">
-              <NSelect v-model:value="modalForm.team_kumite" :options="[
-              { label: '第2组', value: '第2组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择团体组手"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="多人团体自由型" path="multi_team_free_kata">
-              <NSelect v-model:value="modalForm.multi_team_free_kata" :options="[
-              { label: '第1组', value: '第1组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择多人团体自由型"/>
-            </NFormItem>
-          </NGi>
-          <NGi :span="12">
-            <NFormItem label="混合团体型" path="mixed_team_kata">
-              <NSelect v-model:value="modalForm.mixed_team_kata" :options="[
-              { label: '第1组', value: '第1组' },
-              { label: '不参赛', value: '不参赛' }
-            ]" placeholder="请选择混合团体型"/>
-            </NFormItem>
-          </NGi>
+        </NGrid>
+
+        <NGrid :cols="24" :x-gap="24">
+
           <NGi :span="24">
             <NFormItem label="照片上传" path="photo">
               <NUpload
@@ -349,6 +356,8 @@ watch(() => modalForm.value.id_card, updateGender);
             </NFormItem>
           </NGi>
         </NGrid>
+
+
       </NForm>
     </CrudModal>
   </CommonPage>

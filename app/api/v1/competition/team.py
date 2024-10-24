@@ -1,7 +1,10 @@
 import logging
-from fastapi import APIRouter, Query, HTTPException
+from fastapi import APIRouter, Query, HTTPException, File, UploadFile
 from sqlmodel import select
-
+from fastapi.responses import JSONResponse
+import shutil
+import os
+from uuid import uuid4
 from app.core.db import SessionDep
 from app.models.competition import Team
 from app.schemas.base import SuccessExtra
@@ -93,6 +96,10 @@ async def add_team(new_team: Team, db: SessionDep):
     """
     增加运动队
     """
+    user_id = CTX_USER_ID.get()
+    # 取到当前用户名并保存，并存储
+    print(user_id)
+    new_team.user_name = "test"
     db.add(new_team)
     db.commit()
     return SuccessExtra(data={"message": "运动队已添加", "team_id": new_team.id})

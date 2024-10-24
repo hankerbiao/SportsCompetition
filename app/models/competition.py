@@ -1,28 +1,27 @@
 from typing import Optional, List
 from datetime import datetime
 from sqlmodel import Field, SQLModel, Relationship
+from enum import Enum
 
 
 class Team(SQLModel, table=True):
+    __tablename__ = "team"
     id: Optional[int] = Field(default=None, primary_key=True)
     user_name: str
-    name: str = Field(max_length=100)
-    short_name: str = Field(max_length=50)
+    name: str = Field(index=True)
+    short_name: str
     address: str
-    leader_name: str = Field(max_length=100)
-    leader_phone: str = Field(max_length=20)
-    leader_photo: str = Field()
-    doctor_name: Optional[str] = Field(default=None, max_length=100)  # 允许为空
-    doctor_phone: Optional[str] = Field(default=None, max_length=20)  # 允许为空
-    staff_name: str = Field(max_length=100)
-    staff_phone: str = Field(max_length=20)
-    coaches1: str = Field()  # 教练1
-    coaches1_phone: str = Field()  # 教练1电话
-    coaches2: Optional[str] = Field(default=None)  # 允许为空的教练2
-    coaches2_phone: Optional[str] = Field(default=None)  # 允许为空的教练2电话
-
-    def __str__(self):
-        return self.name
+    leader_name: str
+    leader_phone: str
+    leader_photo: str
+    doctor_name: str
+    doctor_phone: str
+    staff_name: str
+    staff_phone: str
+    coaches1: str
+    coaches2: Optional[str] = None
+    coaches1_phone: str
+    coaches2_phone: Optional[str] = None
 
 
 class User(SQLModel, table=True):
@@ -40,7 +39,6 @@ class User(SQLModel, table=True):
     dept_id: Optional[int] = Field(default=None)
 
     athletes: List["Athlete"] = Relationship(back_populates="user")
-
 
 
 class Athlete(SQLModel, table=True):
@@ -62,3 +60,20 @@ class Athlete(SQLModel, table=True):
     # fee: Optional[str] = Field(default=None)
 
     user: Optional[User] = Relationship(back_populates="athletes")
+
+
+class EventStatus(str, Enum):
+    UPCOMING = "即将开始"
+    ONGOING = "进行中"
+    COMPLETED = "已结束"
+    CANCELLED = "已取消"
+
+
+class Event(SQLModel, table=True):
+    __tablename__ = "event"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(..., max_length=100, index=True, description="赛事名称")
+    status: EventStatus = Field(..., description="赛事状态")
+    address: str = Field(..., max_length=200, description="比赛地址")
+    date: str = Field(..., description="比赛日期")
+    participants: int = Field(..., ge=0, description="报名人数")
